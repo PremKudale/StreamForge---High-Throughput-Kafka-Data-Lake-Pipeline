@@ -14,3 +14,4 @@ resources:
   - go-parquet-sink-deployment.yaml
   - go-parquet-sink-hpa.yaml
   - pdb.yaml
+

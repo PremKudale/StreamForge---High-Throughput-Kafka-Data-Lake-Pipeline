@@ -100,3 +100,4 @@ flowchart TD
   - `streamforge_consumer_events_processed`: Ingested vs filtered duplicate count.
   - `streamforge_batch_processing_time_seconds`: Micro-batch processing duration histograms (P50/P95/P99).
   - `streamforge_lake_sink_parquet_bytes_total`: Data lake storage write rate.
+

@@ -74,3 +74,4 @@ spec:
     - name: http
       port: 8082
       targetPort: 8082
+

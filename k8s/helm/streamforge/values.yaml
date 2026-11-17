@@ -84,3 +84,4 @@ parquetSink:
     minReplicas: 3
     maxReplicas: 8
     targetCPUUtilizationPercentage: 75
+

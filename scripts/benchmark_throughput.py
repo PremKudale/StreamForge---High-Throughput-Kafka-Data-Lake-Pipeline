@@ -102,3 +102,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     run_benchmark(args.endpoint, args.events, args.batch_size, args.concurrency)
+

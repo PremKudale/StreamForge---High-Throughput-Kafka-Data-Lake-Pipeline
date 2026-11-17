@@ -36,3 +36,4 @@ spec:
         - type: Percent
           value: 25
           periodSeconds: 60
+

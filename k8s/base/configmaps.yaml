@@ -21,3 +21,4 @@ data:
   POSTGRES_PORT: "5432"
   POSTGRES_DB: "streamforge"
   OTEL_EXPORTER_OTLP_ENDPOINT: "streamforge-collector.streamforge.svc.cluster.local:4317"
+

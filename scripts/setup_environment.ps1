@@ -30,3 +30,4 @@ Write-Host "  - MinIO S3 Console:         http://localhost:9001 (minioadmin / mi
 Write-Host "  - Prometheus Dashboard:     http://localhost:9090"
 Write-Host "  - Grafana Dashboards:       http://localhost:3000 (admin / admin)"
 Write-Host "  - Jaeger Distributed Trace: http://localhost:16686"
+

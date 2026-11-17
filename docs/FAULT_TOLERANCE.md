@@ -96,3 +96,4 @@ StreamForge guarantees idempotent state updates:
    ON CONFLICT (event_id) DO NOTHING;
    ```
    If `ROW_COUNT == 0`, the event was already processed, and real-time aggregations (total events, spend) are skipped.
+

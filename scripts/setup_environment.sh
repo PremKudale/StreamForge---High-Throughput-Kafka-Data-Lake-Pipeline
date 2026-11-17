@@ -26,3 +26,4 @@ echo "  - MinIO S3 Console:         http://localhost:9001 (minioadmin / minioadm
 echo "  - Prometheus Dashboard:     http://localhost:9090"
 echo "  - Grafana Dashboards:       http://localhost:3000 (admin / admin)"
 echo "  - Jaeger Distributed Trace: http://localhost:16686"
+

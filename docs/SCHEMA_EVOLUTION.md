@@ -61,3 +61,4 @@ The PostgreSQL table and Go/Java models mirror this contract:
   private String deviceType = "UNKNOWN";
   ```
 - Go model uses struct tags and fallback logic in `event.Validate()`.
+

@@ -234,3 +234,4 @@ services:
       SPRING_DATASOURCE_PASSWORD: "postgres"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4317"
       SERVER_PORT: "8081"
+

@@ -54,3 +54,4 @@ python scripts/benchmark_throughput.py --events 100000 --batch-size 1000 --concu
 - HPA triggers pod scale-up when CPU utilization crosses **70%** or when consumer lag exceeds threshold.
 - Scale-up policy: Doubles pods within 15 seconds (`100% per 15s`).
 - Scale-down stabilization window: `300s` (5 minutes) to avoid thrashing during intermittent traffic spikes.
+
