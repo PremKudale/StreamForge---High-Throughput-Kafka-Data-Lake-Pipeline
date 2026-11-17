@@ -1,0 +1,20 @@
+# Build Stage
+FROM golang:1.22-alpine AS builder
+
+WORKDIR /app
+COPY go.mod ./
+RUN go mod download || true
+
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /app/bin/producer ./cmd/producer
+
+# Runtime Stage
+FROM alpine:3.19
+RUN apk --no-cache add ca-certificates curl
+
+WORKDIR /app
+COPY --from=builder /app/bin/producer /app/producer
+
+EXPOSE 8080
+ENTRYPOINT ["/app/producer"]
+

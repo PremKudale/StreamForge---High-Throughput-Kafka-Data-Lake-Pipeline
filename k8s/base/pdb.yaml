@@ -1,0 +1,32 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: streamforge-producer-pdb
+  namespace: streamforge
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: go-producer
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: streamforge-consumer-pdb
+  namespace: streamforge
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: java-consumer
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: streamforge-sink-pdb
+  namespace: streamforge
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: go-parquet-sink

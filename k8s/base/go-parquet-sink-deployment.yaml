@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streamforge-go-parquet-sink
+  namespace: streamforge
+  labels:
+    app: go-parquet-sink
+    tier: data-lake
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: go-parquet-sink
+  template:
+    metadata:
+      labels:
+        app: go-parquet-sink
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8082"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+        - name: parquet-sink
+          image: streamforge/go-parquet-sink:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8082
+              name: http
+          envFrom:
+            - configMapRef:
+                name: streamforge-config
+            - secretRef:
+                name: streamforge-secrets
+          resources:
+            requests:
+              cpu: "300m"
+              memory: "512Mi"
+            limits:
+              cpu: "1200m"
+              memory: "1.5Gi"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8082
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8082
+            initialDelaySeconds: 3
+            periodSeconds: 5
+            timeoutSeconds: 2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streamforge-go-parquet-sink
+  namespace: streamforge
+  labels:
+    app: go-parquet-sink
+spec:
+  type: ClusterIP
+  selector:
+    app: go-parquet-sink
+  ports:
+    - name: http
+      port: 8082
+      targetPort: 8082

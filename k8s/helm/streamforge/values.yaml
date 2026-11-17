@@ -1,0 +1,86 @@
+global:
+  environment: production
+
+kafka:
+  bootstrapServers: "kafka-cluster-kafka-bootstrap:9092"
+  mainTopic: "streamforge.user.activity"
+  dlqTopic: "streamforge.events.dlq"
+
+minio:
+  endpoint: "minio:9000"
+  bucket: "streamforge-data-lake"
+  accessKey: "minioadmin"
+  secretKey: "minio_secret_password"
+
+postgres:
+  host: "postgres"
+  port: 5432
+  database: "streamforge"
+  username: "postgres"
+  password: "postgres_password"
+
+otel:
+  endpoint: "otel-collector:4317"
+
+producer:
+  replicaCount: 3
+  image:
+    repository: streamforge/go-producer
+    tag: latest
+    pullPolicy: IfNotPresent
+  batchSize: 2000
+  lingerMs: 15
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 70
+
+consumer:
+  replicaCount: 4
+  image:
+    repository: streamforge/java-consumer
+    tag: latest
+    pullPolicy: IfNotPresent
+  concurrency: 6
+  maxPollRecords: 1000
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 2Gi
+    requests:
+      cpu: 500m
+      memory: 768Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 4
+    maxReplicas: 12
+    targetCPUUtilizationPercentage: 75
+
+parquetSink:
+  replicaCount: 3
+  image:
+    repository: streamforge/go-parquet-sink
+    tag: latest
+    pullPolicy: IfNotPresent
+  flushSize: 5000
+  flushIntervalSec: 5
+  resources:
+    limits:
+      cpu: 1200m
+      memory: 1.5Gi
+    requests:
+      cpu: 300m
+      memory: 512Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 8
+    targetCPUUtilizationPercentage: 75

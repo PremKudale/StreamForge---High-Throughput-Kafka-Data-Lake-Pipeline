@@ -1,0 +1,39 @@
+# Binaries & Build Artifacts
+target/
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+*.class
+*.jar
+*.war
+
+# IDE & Editors
+.idea/
+*.iml
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs & Temp
+*.log
+tmp/
+.temp/
+
+# Go vendor & coverage
+vendor/
+*.out
+
+# Data volumes
+data/
+minio-data/
+postgres-data/

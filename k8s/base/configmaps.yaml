@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: streamforge-config
+  namespace: streamforge
+data:
+  KAFKA_BROKERS: "kafka-cluster-kafka-bootstrap.streamforge.svc.cluster.local:9092"
+  KAFKA_EVENT_TOPIC: "streamforge.user.activity"
+  KAFKA_DLQ_TOPIC: "streamforge.events.dlq"
+  KAFKA_PRODUCER_BATCH_SIZE: "2000"
+  KAFKA_PRODUCER_LINGER_MS: "15"
+  KAFKA_CONCURRENCY: "6"
+  KAFKA_MAX_POLL_RECORDS: "1000"
+  KAFKA_CONSUMER_GROUP_LAKE: "streamforge-parquet-lake-sink"
+  LAKE_BATCH_FLUSH_SIZE: "5000"
+  LAKE_FLUSH_INTERVAL_SEC: "5"
+  MINIO_ENDPOINT: "minio.streamforge.svc.cluster.local:9000"
+  MINIO_DATA_LAKE_BUCKET: "streamforge-data-lake"
+  MINIO_USE_SSL: "false"
+  POSTGRES_HOST: "postgres.streamforge.svc.cluster.local"
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: "streamforge"
+  OTEL_EXPORTER_OTLP_ENDPOINT: "streamforge-collector.streamforge.svc.cluster.local:4317"

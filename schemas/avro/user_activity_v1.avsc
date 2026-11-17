@@ -1,0 +1,43 @@
+{
+  "type": "record",
+  "name": "UserActivityEvent",
+  "namespace": "com.streamforge.avro",
+  "doc": "Schema v1 for StreamForge user activity events",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "Globally unique identifier for the event (UUID v4) used for idempotent de-duplication"
+    },
+    {
+      "name": "user_id",
+      "type": "string",
+      "doc": "Identifier of the actor producing the event"
+    },
+    {
+      "name": "event_type",
+      "type": {
+        "type": "enum",
+        "name": "EventType",
+        "symbols": ["PAGE_VIEW", "PURCHASE", "SEARCH", "ADD_TO_CART", "LOGIN", "LOGOUT", "HEARTBEAT"]
+      },
+      "doc": "Categorized activity type"
+    },
+    {
+      "name": "timestamp_ms",
+      "type": "long",
+      "doc": "Epoch timestamp in milliseconds when the event was generated at source"
+    },
+    {
+      "name": "ip_address",
+      "type": "string",
+      "doc": "Client IP address for geolocation analytics"
+    },
+    {
+      "name": "payload",
+      "type": "string",
+      "doc": "JSON serialized payload containing event-specific attributes"
+    }
+  ]
+}
+
